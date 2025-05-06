@@ -27,7 +27,7 @@ Manfaatnya:
 Contoh Penggunaan PyTorch
 Berikut contoh sederhana penggunaan PyTorch untuk mengenali angka tulisan tangan (dataset MNIST):
 ```
-•	Instalasi
+#	Instalasi
 pip install torch torchvision matplotlib
 •	Import Modul
 import torch
@@ -35,13 +35,13 @@ import torch.nn as nn
 import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
-•	Mengunduh Dataset
+#	Mengunduh Dataset
 transform = transforms.ToTensor()
 trainset = torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=32, shuffle=True)
 testset = torchvision.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size=32, shuffle=False)
-•	Membuat Model Neural Network
+#	Membuat Model Neural Network
 class NeuralNetwork(nn.Module):
     def __init__(self):
         super().__init__()
@@ -59,7 +59,7 @@ class NeuralNetwork(nn.Module):
         return logits
 
 model = NeuralNetwork()
-•	Melatih Model
+#	Melatih Model
 loss_fn = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
@@ -73,7 +73,7 @@ for epoch in range(5):
         optimizer.step()
 
     print(f"Epoch {epoch+1}, Loss: {loss.item():.4f}")
-•	Menguji Akurasi
+#	Menguji Akurasi
 correct = 0
 total = 0
 with torch.no_grad():
@@ -87,6 +87,3 @@ print(f"Akurasi: {100 * correct / total:.2f}%")
 ```
 Penutup
 Framework Deep Learning adalah jembatan penting antara ide dan implementasi dalam dunia kecerdasan buatan. Mereka membantu para peneliti, mahasiswa, hingga perusahaan besar untuk membangun sistem cerdas dengan lebih mudah dan efisien.
-
-Seperti kata Sayyidina Ali bin Abi Thalib r.a., "Ikatlah ilmu dengan menuliskannya."
-Semoga tulisan ini menjadi langkah awal Anda mengenal dunia AI lebih dekat.
