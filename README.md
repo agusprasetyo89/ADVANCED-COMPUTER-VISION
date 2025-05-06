@@ -29,18 +29,21 @@ Berikut contoh sederhana penggunaan PyTorch untuk mengenali angka tulisan tangan
 ```
 #	Instalasi
 pip install torch torchvision matplotlib
-•	Import Modul
+
+#	Import Modul
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
+
 #	Mengunduh Dataset
 transform = transforms.ToTensor()
 trainset = torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=32, shuffle=True)
 testset = torchvision.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size=32, shuffle=False)
+
 #	Membuat Model Neural Network
 class NeuralNetwork(nn.Module):
     def __init__(self):
@@ -59,6 +62,7 @@ class NeuralNetwork(nn.Module):
         return logits
 
 model = NeuralNetwork()
+
 #	Melatih Model
 loss_fn = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
@@ -73,6 +77,7 @@ for epoch in range(5):
         optimizer.step()
 
     print(f"Epoch {epoch+1}, Loss: {loss.item():.4f}")
+
 #	Menguji Akurasi
 correct = 0
 total = 0
