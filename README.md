@@ -28,23 +28,26 @@ Contoh Penggunaan PyTorch
 Berikut contoh sederhana penggunaan PyTorch untuk mengenali angka tulisan tangan (dataset MNIST):
 ```
 #	Instalasi
-pip install torch torchvision matplotlib
+# Instalasi Library
+!pip install torch torchvision matplotlib
 
-#	Import Modul
+# Import Modul
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
 
-#	Mengunduh Dataset
+# Persiapan Dataset
 transform = transforms.ToTensor()
+
 trainset = torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=32, shuffle=True)
+
 testset = torchvision.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size=32, shuffle=False)
 
-#	Membuat Model Neural Network
+# Definisi Model
 class NeuralNetwork(nn.Module):
     def __init__(self):
         super().__init__()
@@ -54,7 +57,8 @@ class NeuralNetwork(nn.Module):
             nn.ReLU(),
             nn.Linear(128, 64),
             nn.ReLU(),
-            nn.Linear(64, 10))
+            nn.Linear(64, 10)
+        )
 
     def forward(self, x):
         x = self.flatten(x)
@@ -63,11 +67,13 @@ class NeuralNetwork(nn.Module):
 
 model = NeuralNetwork()
 
-#	Melatih Model
+# Loss Function dan Optimizer
 loss_fn = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
+# Training Loop
 for epoch in range(5):
+    running_loss = 0.0
     for images, labels in trainloader:
         outputs = model(images)
         loss = loss_fn(outputs, labels)
@@ -76,9 +82,11 @@ for epoch in range(5):
         loss.backward()
         optimizer.step()
 
-    print(f"Epoch {epoch+1}, Loss: {loss.item():.4f}")
+        running_loss += loss.item()
 
-#	Menguji Akurasi
+    print(f"Epoch {epoch+1}, Loss: {running_loss/len(trainloader):.4f}")
+
+# Evaluasi Model
 correct = 0
 total = 0
 with torch.no_grad():
