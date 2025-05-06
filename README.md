@@ -100,3 +100,11 @@ print(f"Akurasi: {100 * correct / total:.2f}%")
 ```
 Penutup
 Framework Deep Learning adalah jembatan penting antara ide dan implementasi dalam dunia kecerdasan buatan. Mereka membantu para peneliti, mahasiswa, hingga perusahaan besar untuk membangun sistem cerdas dengan lebih mudah dan efisien.
+
+Referensi
+Hery, H., Haryani, C. A., Widjaja, A. E., Tarigan, R. E., & Aribowo, A. (2024).
+_Unsupervised Learning for MNIST with Exploratory Data Analysis for Digit Recognition._
+Naik, S., Pathare, P., Qureshi, M., Kalaswad, C., Joshi, A., & Paliwal, N. (2024).
+_Recognizing Handwritten Digits on MNIST Dataset using KNN Algorithm._
+Ghosh, S. (2022).
+_Comparative Analysis of Boosting Algorithms Over MNIST Handwritten Digit Dataset._
